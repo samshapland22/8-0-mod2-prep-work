@@ -1,6 +1,6 @@
 # Prep for Module 2 by Reinforcing What You Learned in Module 1
 
-We're heading into Module 2 in just a few days! If you feel you could use more practice with the concepts we've covered in Module 1, now is the perfect time to strengthen your foundations.
+We're heading into Module 2 in just a few days! If you feel you could use more practice with the concepts we covered in Module 1, now is the perfect time to strengthen your foundations.
 
 ## Getting started
 
