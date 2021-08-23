@@ -82,9 +82,9 @@ describe("mostPlayedSong()", () => {
     expect(actual).toEqual(expected);
   });
 
-  test("should return '' if there are no bands", () => {
+  test("should return error message 'Bands array is empty.' if there are no bands", () => {
     const actual = mostPlayedSong([]);
-    const expected = "";
+    const expected = "Bands array is empty.";
 
     expect(actual).toEqual(expected);
   });
@@ -124,9 +124,9 @@ describe("findBandBySong()", () => {
     expect(actual).toEqual(expected);
   });
 
-  test("should return '' if there are no bands", () => {
+  test("should return null if there are no bands", () => {
     const actual = findBandBySong([]);
-    const expected = "";
+    const expected = null;
 
     expect(actual).toEqual(expected);
   });
@@ -145,9 +145,9 @@ describe("findBandByMember()", () => {
     expect(actual).toEqual(expected);
   });
 
-  test("should return '' if there are no bands", () => {
+  test("should return null if there are no bands", () => {
     const actual = findBandByMember([]);
-    const expected = "";
+    const expected = null;
 
     expect(actual).toEqual(expected);
   });

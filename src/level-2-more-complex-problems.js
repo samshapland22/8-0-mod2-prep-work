@@ -35,7 +35,7 @@ function mostOrLeastMembers() {}
  * mostOrLeastPlayedSong()
  * -----------------------------
  * Returns a string that contains the name of the band with the most or least played song, the song name,
- * and the number of plays on Spotify. If the inputted `bands` array is empty, return ''.
+ * and the number of plays on Spotify. If the inputted `bands` array is empty, return 'Bands array is empty.'
  * @param {Object[]} bands - An array of band objects.
  * @param {string} switch - A string that can either be "most" or "least"
  * @returns {string} A formatted string that contains the name of the band with the most or least played song,

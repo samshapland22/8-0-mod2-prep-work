@@ -81,3 +81,5 @@ const bands = [
     },
   },
 ];
+
+module.exports = bands;

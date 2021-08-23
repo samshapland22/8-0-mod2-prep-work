@@ -67,9 +67,9 @@ describe("mostOrLeastPlayedSong()", () => {
     expect(actual).toEqual(expected);
   });
 
-  test("should return '' if there are no bands", () => {
+  test("should return 'Bands array is empty.' if there are no bands", () => {
     const actual = mostOrLeastPlayedSong([]);
-    const expected = "";
+    const expected = "Bands array is empty.";
 
     expect(actual).toEqual(expected);
   });

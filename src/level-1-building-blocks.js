@@ -47,13 +47,15 @@ function bandMembersTotal() {}
  * mostPlayedSong()
  * -----------------------------
  * Returns a string that contains the name of the band with the most played song, the song name,
- * and the number of plays on Spotify. If the inputted `bands` array is empty, return ''.
+ * and the number of plays on Spotify. If the inputted `bands` array is empty, return 'Bands array is empty.'
  * @param {Object[]} bands - An array of band objects.
  * @returns {string} A formatted string that contains the name of the band with the most played song,
  *                   the song name, and the number of plays on Spotify
  *
  * EXAMPLE: mostPlayedSong(bandsData);
  * > "Nirvana, 'Smells Like Teen Spirit', 1,048,485,790 plays"
+ *
+ * HINT: Use "toLocaleString()" if you need to reformat the plays number at the end. Look it up on MDN if you're not already familiar.
  */
 
 function mostPlayedSong() {}
@@ -80,7 +82,7 @@ function mostMembers() {}
  *
  * findBandBySong()
  * -----------------------------
- * Returns the `bandName` of the band that matches the target `song`. If the inputted `bands` array is empty, return ''.
+ * Returns the `bandName` of the band that matches the target `song`. If the inputted `bands` array is empty, return null.
  * @param {Object[]} bands - An array of band objects.
  * @param {string} song - A song name that represents one of the bands' 'mostPlayedSongOnSpotify' name.
  * @returns {string} The `bandName` of the band that matches the target `song`.
@@ -97,7 +99,7 @@ function findBandBySong() {}
  *
  * findBandByMember()
  * -----------------------------
- * Returns the `bandName` of the band that matches the target `member`. If the inputted `bands` array is empty, return ''.
+ * Returns the `bandName` of the band that matches the target `member`. If the inputted `bands` array is empty, return null.
  * @param {Object[]} bands - An array of band objects.
  * @param {string} name - A person's name that represents one of the bands' members.
  * @returns {string} The `bandName` of the band that matches the target `name`.
