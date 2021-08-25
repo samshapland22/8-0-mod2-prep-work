@@ -31,10 +31,6 @@ function getAllBandNames(bands) {
   return bandNames;
 };
 
-
-//check
-// console.log(getAllBandNames(bandsData))
-
 /**
  *
  *
@@ -50,18 +46,18 @@ function getAllBandNames(bands) {
  */
 
 function bandMembersTotal(bands) {
-  let result = 0
+  let result = 0;
 
   for (const band of bands) {
     if (!band.members.length) {
-      return result
+      return result;
     } else {
-      result += band.members.length 
-    }
-  }
+      result += band.members.length; 
+    };
+  };
 
-  return result
-}
+  return result;
+};
 
 /**
  *
@@ -81,7 +77,25 @@ function bandMembersTotal(bands) {
  * HINT: Use "toLocaleString()" if you need to reformat the plays number at the end. Look it up on MDN if you're not already familiar.
  */
 
-function mostPlayedSong() {}
+//-------------HELPER FUNCTIONS--------------------------
+function toNumber(string) {
+  return Number(string.split(",").join(""))
+}
+
+function mostPlayedSong(bands) {
+  let result = "Bands array is empty.";
+  let currentBand = bands[0] 
+
+  for (const band of bands) {
+    toNumber(band.mostPlayedSongOnSpotify.plays) > toNumber(currentBand.mostPlayedSongOnSpotify.plays) ? currentBand = band : currentBand; 
+    result = `${currentBand.bandName}, '${currentBand.mostPlayedSongOnSpotify.name}', ${currentBand.mostPlayedSongOnSpotify.plays} plays`;
+  };
+  return result;
+
+};
+
+//check
+// console.log(mostPlayedSong(bandsData))
 
 /**
  *
