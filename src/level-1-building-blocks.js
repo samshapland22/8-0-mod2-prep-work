@@ -84,7 +84,7 @@ function toNumber(string) {
 
 function mostPlayedSong(bands) {
   let result = "Bands array is empty.";
-  let currentBand = bands[0] 
+  let currentBand = bands[0]; 
 
   for (const band of bands) {
     toNumber(band.mostPlayedSongOnSpotify.plays) > toNumber(currentBand.mostPlayedSongOnSpotify.plays) ? currentBand = band : currentBand; 
@@ -111,7 +111,18 @@ function mostPlayedSong(bands) {
  * > "Earth, Wind & Fire"
  */
 
-function mostMembers() {}
+function mostMembers(bands) {
+  let result = "";
+  let currentBand = bands[0]; 
+
+  for (const band of bands) {
+    band.members.length > currentBand.members.length ? currentBand = band : currentBand;
+    result = currentBand.bandName
+  }
+
+  return result;
+
+};
 
 /**
  *
