@@ -144,9 +144,9 @@ function findBandBySong(bands, song) {
 
   for (const band of bands) {
     if (band.mostPlayedSongOnSpotify.name === song) {
-      result = band.bandName
-    }
-  }
+      result = band.bandName;
+    };
+  };
 
   return result;
 };
@@ -167,7 +167,20 @@ function findBandBySong(bands, song) {
  *
  */
 
-function findBandByMember() {}
+function findBandByMember(bands, name) {
+  let result = null;
+
+  for (const band of bands) {
+    const bandMembers = band.members
+    for (const member of bandMembers) {
+      if (member.name === name) {
+        result = band.bandName
+      }
+    }
+  }
+
+  return result;
+}
 
 /**
  *
