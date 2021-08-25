@@ -117,7 +117,7 @@ function mostMembers(bands) {
 
   for (const band of bands) {
     band.members.length > currentBand.members.length ? currentBand = band : currentBand;
-    result = currentBand.bandName
+    result = currentBand.bandName;
   }
 
   return result;
@@ -139,7 +139,17 @@ function mostMembers(bands) {
  * > "Cocteau Twins"
  */
 
-function findBandBySong() {}
+function findBandBySong(bands, song) {
+  let result = null;
+
+  for (const band of bands) {
+    if (band.mostPlayedSongOnSpotify.name === song) {
+      result = band.bandName
+    }
+  }
+
+  return result;
+};
 
 /**
  *
