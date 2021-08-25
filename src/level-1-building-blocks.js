@@ -22,7 +22,18 @@ const bandsData = require("../data/bands-data.js");
  * ]
  */
 
-function getAllBandNames() {}
+function getAllBandNames(bands) {
+  const bandNames = [];
+
+  for (const band of bands) {
+    bandNames.push(band.bandName);
+  };
+  return bandNames;
+};
+
+
+//check
+// console.log(getAllBandNames(bandsData))
 
 /**
  *
