@@ -49,7 +49,19 @@ function getAllBandNames(bands) {
  * > 62
  */
 
-function bandMembersTotal() {}
+function bandMembersTotal(bands) {
+  let result = 0
+
+  for (const band of bands) {
+    if (!band.members.length) {
+      return result
+    } else {
+      result += band.members.length 
+    }
+  }
+
+  return result
+}
 
 /**
  *
