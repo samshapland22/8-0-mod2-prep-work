@@ -171,16 +171,16 @@ function findBandByMember(bands, name) {
   let result = null;
 
   for (const band of bands) {
-    const bandMembers = band.members
+    const bandMembers = band.members;
     for (const member of bandMembers) {
       if (member.name === name) {
-        result = band.bandName
-      }
-    }
-  }
+        result = band.bandName;
+      };
+    };
+  };
 
   return result;
-}
+};
 
 /**
  *
@@ -202,17 +202,17 @@ function filterByInstrument(bands, instrument) {
   const memberByInstrument = [];
 
   for (const band of bands) {
-    const bandMember = band.members
+    const bandMember = band.members;
     for (const member of bandMember) {
       if(member.instruments.includes(instrument)) {
-        memberByInstrument.push(member.name)
-      }
-    }
+        memberByInstrument.push(member.name);
+      };
+    };
   
-  }
+  };
 
-  return memberByInstrument
-}
+  return memberByInstrument;
+};
 
 /**
  *
@@ -230,7 +230,18 @@ function filterByInstrument(bands, instrument) {
  * > ["Destiny's Child", "Roxy Music", "Boyz II Men"]
  */
 
-function reverseFilterByGenre() {}
+function reverseFilterByGenre(bands, genre) {
+  const bandsExcludingGenre = [];
+
+  for (const band of bands) {
+    if (!band.genres.includes(genre)) {
+      bandsExcludingGenre.push(band.bandName);
+    };
+  };
+
+  return bandsExcludingGenre;
+};
+
 
 /**
  *
