@@ -20,13 +20,40 @@ const RRHOFData = require("../data/RRHOF-data.js");
  */
 
 //WRITE A HELPER FUNCTION THAT FINDS THE BAND WITH THE MOST MEMBERS.
-//(you already wrote a function like this in 'level-1-building-blocks.js')
+const levelOne = require("../src/level-1-building-blocks");
 
 //WRITE A HELPER FUNCTION THAT FINDS THE BAND WITH THE LEAST MEMBERS.
+function leastMembers(bands) {
+  let result = "";
+
+  let currentBand = bands[0]; 
+  for (const band of bands) {
+    band.members.length < currentBand.members.length ? currentBand = band : currentBand;
+    result = currentBand.bandName;
+  }
+  return result;
+};
 
 //USE BOTH OF YOUR HELPER FUNCTIONS INSIDE OF THE MAIN FUNCTION BELOW.
 
-function mostOrLeastMembers() {}
+function mostOrLeastMembers(bands, order) {
+  let bandName = "";
+
+  if (bands === undefined || !bands.length) {
+    return bandName
+  }
+  if(order.toLowerCase() === 'most') {
+    bandName = levelOne.mostMembers(bands)
+  }
+  if(order.toLowerCase() === 'least') {
+    bandName = leastMembers(bands)
+  }
+
+  return bandName
+}
+
+//check
+// console.log(mostOrLeastMembers(bandsData, 'least'))
 
 /**
  *
