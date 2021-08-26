@@ -258,7 +258,19 @@ function reverseFilterByGenre(bands, genre) {
  * > { USA: 9, Scotland: 1, England: 3 }
  */
 
-function countByCountry() {}
+function countByCountry(bands) {
+  const bandCountByCountry = {};
+
+  for (const band of bands) {
+    bandCountByCountry[band.origin.country] = bandCountByCountry[band.origin.country] || 0
+    bandCountByCountry[band.origin.country] += 1
+
+  }
+  return bandCountByCountry
+}
+
+//Check
+// console.log(countByCountry(bandsData));
 
 module.exports = {
   getAllBandNames,
