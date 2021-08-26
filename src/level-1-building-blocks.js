@@ -198,7 +198,21 @@ function findBandByMember(bands, name) {
  * > ["Brian Eno", "Atticus Ross"]
  */
 
-function filterByInstrument() {}
+function filterByInstrument(bands, instrument) {
+  const memberByInstrument = [];
+
+  for (const band of bands) {
+    const bandMember = band.members
+    for (const member of bandMember) {
+      if(member.instruments.includes(instrument)) {
+        memberByInstrument.push(member.name)
+      }
+    }
+  
+  }
+
+  return memberByInstrument
+}
 
 /**
  *
