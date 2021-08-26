@@ -79,10 +79,40 @@ function mostOrLeastMembers(bands, order) {
 //(you already wrote a function like this in 'level-1-building-blocks.js')
 
 //WRITE A HELPER FUNCTION THAT FINDS THE BAND WITH THE LEAST PLAYED SONG.
+//-------------HELPER FUNCTIONS--------------------------
+function toNumber(string) {
+  return Number(string.split(",").join(""))
+}
+
+function leastPlayedSong(bands) {
+  let result = "Bands array is empty.";
+  let currentBand = bands[0]; 
+
+  for (const band of bands) {
+    toNumber(band.mostPlayedSongOnSpotify.plays) < toNumber(currentBand.mostPlayedSongOnSpotify.plays) ? currentBand = band : currentBand; 
+    result = `${currentBand.bandName}, '${currentBand.mostPlayedSongOnSpotify.name}', ${currentBand.mostPlayedSongOnSpotify.plays} plays`;
+  };
+  return result;
+
+};
 
 //USE BOTH OF YOUR HELPER FUNCTIONS INSIDE OF THE MAIN FUNCTION BELOW.
 
-function mostOrLeastPlayedSong() {}
+function mostOrLeastPlayedSong(bands, order) {
+  let mostOrLeastPlayedSong = "Bands array is empty.";
+
+  if (bands === undefined || !bands.length) {
+    return mostOrLeastPlayedSong
+  }
+  if(order.toLowerCase() === 'most') {
+    mostOrLeastPlayedSong = levelOne.mostPlayedSong(bands)
+  }
+  if(order.toLowerCase() === 'least') {
+    mostOrLeastPlayedSong = leastPlayedSong(bands)
+  }
+
+  return mostOrLeastPlayedSong
+}
 
 /**
  *
