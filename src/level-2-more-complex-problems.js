@@ -185,13 +185,32 @@ function filterByRRHOFStatus(bands, RRHOFBands) {
  */
 
 //WRITE A HELPER FUNCTION THAT RETURNS AN ARRAY CONTAINING ALL `inductedBy` STRINGS FROM THE RRHOF DATA.
+function RRHOFInductors (RRHOFBands = []) {
+  return RRHOFBands.map(band => band.inductedBy) ;
+};
 
 //WRITE A HELPER FUNCTION THAT RETURNS AN ARRAY CONTAINING ALL `members.name` STRINGS FROM THE BANDS DATA.
-//(you already wrote a function similar this, but not exactly the same, in 'level-1-building-blocks.js')
+function allBandMembers (bands) {
+  return bands.flatMap(band => band.members.map(member => member.name))
+}
+//check
+// console.log(allBandMembers(bandsData))
 
 //USE THESE HELPER FUNCTIONS INSIDE OF THE MAIN FUNCTION BELOW.
 
-function membersAndInductors() {}
+function membersAndInductors(bands, RRHOFBands) {
+  let bandMemberAsInductor = [];
+
+  for (const inductor of RRHOFInductors(RRHOFBands)) {
+    if (allBandMembers(bands).includes(inductor)) {
+      bandMemberAsInductor.push(inductor);
+    };
+  };
+  return bandMemberAsInductor;
+};
+
+//check
+// console.log(membersAndInductors(bandsData, RRHOFData))
 
 module.exports = {
   mostOrLeastMembers,
