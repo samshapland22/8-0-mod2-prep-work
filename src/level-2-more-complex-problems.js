@@ -142,10 +142,26 @@ function mostOrLeastPlayedSong(bands, order) {
  */
 
 //WRITE A HELPER FUNCTION THAT RETURNS AN ARRAY CONTAINING ALL `bandName` STRINGS FROM THE RRHOF DATA.
+function RRHOFBandNames (RRHOFBands) {
+  return RRHOFBands.map(band => band.bandName)
+}
 
 //USE THIS HELPER FUNCTION INSIDE OF THE MAIN FUNCTION BELOW.
 
-function filterByRRHOFStatus() {}
+function filterByRRHOFStatus(bands, RRHOFBands) {
+  let bandsInRRHOF = [];
+
+  for (const band of bands) {
+    if (RRHOFBandNames(RRHOFBands).includes(band.bandName)) {
+      bandsInRRHOF.push(band.bandName);
+    };
+  };
+
+  return bandsInRRHOF;
+};
+
+//check
+// console.log(filterByRRHOFStatus(bandsData, RRHOFData))
 
 /**
  *
