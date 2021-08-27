@@ -20,13 +20,40 @@ const RRHOFData = require("../data/RRHOF-data.js");
  */
 
 //WRITE A HELPER FUNCTION THAT FINDS THE BAND WITH THE MOST MEMBERS.
-//(you already wrote a function like this in 'level-1-building-blocks.js')
+const levelOne = require("../src/level-1-building-blocks");
 
 //WRITE A HELPER FUNCTION THAT FINDS THE BAND WITH THE LEAST MEMBERS.
+function leastMembers(bands) {
+  let result = "";
+
+  let currentBand = bands[0]; 
+  for (const band of bands) {
+    band.members.length < currentBand.members.length ? currentBand = band : currentBand;
+    result = currentBand.bandName;
+  }
+  return result;
+};
 
 //USE BOTH OF YOUR HELPER FUNCTIONS INSIDE OF THE MAIN FUNCTION BELOW.
 
-function mostOrLeastMembers() {}
+function mostOrLeastMembers(bands, order) {
+  let bandName = "";
+
+  if (bands === undefined || !bands.length) {
+    return bandName
+  }
+  if(order.toLowerCase() === 'most') {
+    bandName = levelOne.mostMembers(bands)
+  }
+  if(order.toLowerCase() === 'least') {
+    bandName = leastMembers(bands)
+  }
+
+  return bandName
+}
+
+//check
+// console.log(mostOrLeastMembers(bandsData, 'least'))
 
 /**
  *
@@ -52,10 +79,40 @@ function mostOrLeastMembers() {}
 //(you already wrote a function like this in 'level-1-building-blocks.js')
 
 //WRITE A HELPER FUNCTION THAT FINDS THE BAND WITH THE LEAST PLAYED SONG.
+//-------------HELPER FUNCTIONS--------------------------
+function toNumber(string) {
+  return Number(string.split(",").join(""))
+}
+
+function leastPlayedSong(bands) {
+  let result = "Bands array is empty.";
+  let currentBand = bands[0]; 
+
+  for (const band of bands) {
+    toNumber(band.mostPlayedSongOnSpotify.plays) < toNumber(currentBand.mostPlayedSongOnSpotify.plays) ? currentBand = band : currentBand; 
+    result = `${currentBand.bandName}, '${currentBand.mostPlayedSongOnSpotify.name}', ${currentBand.mostPlayedSongOnSpotify.plays} plays`;
+  };
+  return result;
+
+};
 
 //USE BOTH OF YOUR HELPER FUNCTIONS INSIDE OF THE MAIN FUNCTION BELOW.
 
-function mostOrLeastPlayedSong() {}
+function mostOrLeastPlayedSong(bands, order) {
+  let mostOrLeastPlayedSong = "Bands array is empty.";
+
+  if (bands === undefined || !bands.length) {
+    return mostOrLeastPlayedSong
+  }
+  if(order.toLowerCase() === 'most') {
+    mostOrLeastPlayedSong = levelOne.mostPlayedSong(bands)
+  }
+  if(order.toLowerCase() === 'least') {
+    mostOrLeastPlayedSong = leastPlayedSong(bands)
+  }
+
+  return mostOrLeastPlayedSong
+}
 
 /**
  *
@@ -85,10 +142,26 @@ function mostOrLeastPlayedSong() {}
  */
 
 //WRITE A HELPER FUNCTION THAT RETURNS AN ARRAY CONTAINING ALL `bandName` STRINGS FROM THE RRHOF DATA.
+function RRHOFBandNames (RRHOFBands) {
+  return RRHOFBands.map(band => band.bandName)
+}
 
 //USE THIS HELPER FUNCTION INSIDE OF THE MAIN FUNCTION BELOW.
 
-function filterByRRHOFStatus() {}
+function filterByRRHOFStatus(bands, RRHOFBands) {
+  let bandsInRRHOF = [];
+
+  for (const band of bands) {
+    if (RRHOFBandNames(RRHOFBands).includes(band.bandName)) {
+      bandsInRRHOF.push(band.bandName);
+    };
+  };
+
+  return bandsInRRHOF;
+};
+
+//check
+// console.log(filterByRRHOFStatus(bandsData, RRHOFData))
 
 /**
  *
@@ -112,13 +185,32 @@ function filterByRRHOFStatus() {}
  */
 
 //WRITE A HELPER FUNCTION THAT RETURNS AN ARRAY CONTAINING ALL `inductedBy` STRINGS FROM THE RRHOF DATA.
+function RRHOFInductors (RRHOFBands = []) {
+  return RRHOFBands.map(band => band.inductedBy) ;
+};
 
 //WRITE A HELPER FUNCTION THAT RETURNS AN ARRAY CONTAINING ALL `members.name` STRINGS FROM THE BANDS DATA.
-//(you already wrote a function similar this, but not exactly the same, in 'level-1-building-blocks.js')
+function allBandMembers (bands) {
+  return bands.flatMap(band => band.members.map(member => member.name))
+}
+//check
+// console.log(allBandMembers(bandsData))
 
 //USE THESE HELPER FUNCTIONS INSIDE OF THE MAIN FUNCTION BELOW.
 
-function membersAndInductors() {}
+function membersAndInductors(bands, RRHOFBands) {
+  let bandMemberAsInductor = [];
+
+  for (const inductor of RRHOFInductors(RRHOFBands)) {
+    if (allBandMembers(bands).includes(inductor)) {
+      bandMemberAsInductor.push(inductor);
+    };
+  };
+  return bandMemberAsInductor;
+};
+
+//check
+// console.log(membersAndInductors(bandsData, RRHOFData))
 
 module.exports = {
   mostOrLeastMembers,

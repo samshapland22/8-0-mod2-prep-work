@@ -22,7 +22,14 @@ const bandsData = require("../data/bands-data.js");
  * ]
  */
 
-function getAllBandNames() {}
+function getAllBandNames(bands) {
+  const bandNames = [];
+
+  for (const band of bands) {
+    bandNames.push(band.bandName);
+  };
+  return bandNames;
+};
 
 /**
  *
@@ -38,7 +45,19 @@ function getAllBandNames() {}
  * > 62
  */
 
-function bandMembersTotal() {}
+function bandMembersTotal(bands) {
+  let result = 0;
+
+  for (const band of bands) {
+    if (!band.members.length) {
+      return result;
+    } else {
+      result += band.members.length; 
+    };
+  };
+
+  return result;
+};
 
 /**
  *
@@ -58,7 +77,25 @@ function bandMembersTotal() {}
  * HINT: Use "toLocaleString()" if you need to reformat the plays number at the end. Look it up on MDN if you're not already familiar.
  */
 
-function mostPlayedSong() {}
+//-------------HELPER FUNCTIONS--------------------------
+function toNumber(string) {
+  return Number(string.split(",").join(""))
+}
+
+function mostPlayedSong(bands) {
+  let result = "Bands array is empty.";
+  let currentBand = bands[0]; 
+
+  for (const band of bands) {
+    toNumber(band.mostPlayedSongOnSpotify.plays) > toNumber(currentBand.mostPlayedSongOnSpotify.plays) ? currentBand = band : currentBand; 
+    result = `${currentBand.bandName}, '${currentBand.mostPlayedSongOnSpotify.name}', ${currentBand.mostPlayedSongOnSpotify.plays} plays`;
+  };
+  return result;
+
+};
+
+//check
+// console.log(mostPlayedSong(bandsData))
 
 /**
  *
@@ -74,7 +111,18 @@ function mostPlayedSong() {}
  * > "Earth, Wind & Fire"
  */
 
-function mostMembers() {}
+function mostMembers(bands) {
+  let result = "";
+  let currentBand = bands[0]; 
+
+  for (const band of bands) {
+    band.members.length > currentBand.members.length ? currentBand = band : currentBand;
+    result = currentBand.bandName;
+  }
+
+  return result;
+
+};
 
 /**
  *
@@ -91,7 +139,17 @@ function mostMembers() {}
  * > "Cocteau Twins"
  */
 
-function findBandBySong() {}
+function findBandBySong(bands, song) {
+  let result = null;
+
+  for (const band of bands) {
+    if (band.mostPlayedSongOnSpotify.name === song) {
+      result = band.bandName;
+    };
+  };
+
+  return result;
+};
 
 /**
  *
@@ -109,7 +167,20 @@ function findBandBySong() {}
  *
  */
 
-function findBandByMember() {}
+function findBandByMember(bands, name) {
+  let result = null;
+
+  for (const band of bands) {
+    const bandMembers = band.members;
+    for (const member of bandMembers) {
+      if (member.name === name) {
+        result = band.bandName;
+      };
+    };
+  };
+
+  return result;
+};
 
 /**
  *
@@ -127,7 +198,21 @@ function findBandByMember() {}
  * > ["Brian Eno", "Atticus Ross"]
  */
 
-function filterByInstrument() {}
+function filterByInstrument(bands, instrument) {
+  const memberByInstrument = [];
+
+  for (const band of bands) {
+    const bandMember = band.members;
+    for (const member of bandMember) {
+      if(member.instruments.includes(instrument)) {
+        memberByInstrument.push(member.name);
+      };
+    };
+  
+  };
+
+  return memberByInstrument;
+};
 
 /**
  *
@@ -145,7 +230,18 @@ function filterByInstrument() {}
  * > ["Destiny's Child", "Roxy Music", "Boyz II Men"]
  */
 
-function reverseFilterByGenre() {}
+function reverseFilterByGenre(bands, genre) {
+  const bandsExcludingGenre = [];
+
+  for (const band of bands) {
+    if (!band.genres.includes(genre)) {
+      bandsExcludingGenre.push(band.bandName);
+    };
+  };
+
+  return bandsExcludingGenre;
+};
+
 
 /**
  *
@@ -162,7 +258,19 @@ function reverseFilterByGenre() {}
  * > { USA: 9, Scotland: 1, England: 3 }
  */
 
-function countByCountry() {}
+function countByCountry(bands) {
+  const bandCountByCountry = {};
+
+  for (const band of bands) {
+    bandCountByCountry[band.origin.country] = bandCountByCountry[band.origin.country] || 0
+    bandCountByCountry[band.origin.country] += 1
+
+  }
+  return bandCountByCountry
+}
+
+//Check
+// console.log(countByCountry(bandsData));
 
 module.exports = {
   getAllBandNames,
