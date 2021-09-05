@@ -6,9 +6,11 @@ const bandsData = require("../data/bands-data.js");
  *
  * getAllBandNames()
  * -----------------------------
- * Returns all `bandNames` from an array of bands. If the inputted `bands` array is empty, return `[]`.
+ * Returns all `bandNames` from an array of bands.
+ * If the inputted `bands` array is empty, return `[]`.
  * @param {Object[]} bands - An array of band objects.
- * @returns {string[]} An array of strings, which are the names of every band.
+ * @returns {string[]} An array of strings, which are 
+ * the names of every band.
  *
  * EXAMPLE: getAllBandNames(bandsData);
  * > [
@@ -41,9 +43,11 @@ function getAllBandNames(bands) {
  *
  * bandMembersTotal()
  * -----------------------------
- * Returns total number of `members` from an array of bands. If the inputted `bands` array is empty, return `0`.
+ * Returns total number of `members` from an array of bands. 
+ * If the inputted `bands` array is empty, return `0`.
  * @param {Object[]} bands - An array of band objects.
- * @returns {number} A number that represents the total number of band members included in the
+ * @returns {number} A number that represents the total 
+ * number of band members included in the
  * `bands` array that gets passed in.
  *
  * EXAMPLE: bandMembersTotal(bandsData);
@@ -54,9 +58,7 @@ function bandMembersTotal(bands) {
   let numOfMembers = 0;
 
   for (const eachBand of bands) {
-    for (const eachMember of eachBand.members) {
-      numOfMembers++;
-    }
+    numOfMembers += eachBand.members.length;
   }
   return numOfMembers;
 }
@@ -67,11 +69,12 @@ function bandMembersTotal(bands) {
  *
  * mostPlayedSong()
  * -----------------------------
- * Returns a string that contains the name of the band with the most played song, the song name,
- * and the number of plays on Spotify. If the inputted `bands` array is empty,
- * return 'Bands array is empty.'
+ * Returns a string that contains the name of the band with the 
+ * most played song, the song name, and the number of plays on Spotify. 
+ * If the inputted `bands` array is empty, return 'Bands array is empty.'
  * @param {Object[]} bands - An array of band objects.
- * @returns {string} A formatted string that contains the name of the band with the most played song, the song name, and the number of plays on Spotify
+ * @returns {string} A formatted string that contains the name of the band with 
+ * the most played song, the song name, and the number of plays on Spotify
  *
  * EXAMPLE: mostPlayedSong(bandsData);
  * > "Nirvana, 'Smells Like Teen Spirit', 1,048,485,790 plays"
@@ -98,12 +101,21 @@ function mostPlayedSong(bands) {
     return stringResult;
   }
 
-  let mostPlayed = formattedNum(bands[0].mostPlayedSongOnSpotify.plays);
+  let mostPlayed = -Infinity; 
 
   for (const eachBand of bands) {
-    if (formattedNum(eachBand.mostPlayedSongOnSpotify.plays) > mostPlayed) {
-      mostPlayed = formattedNum(eachBand.mostPlayedSongOnSpotify.plays);
-      stringResult = `${eachBand.bandName}, '${eachBand.mostPlayedSongOnSpotify.name}', ${eachBand.mostPlayedSongOnSpotify.plays} plays`;
+    // destructuring a 'eachBand' object, grabbing 'bandName' key and its value
+    // and declaring the variable with the same key name ('bandName)
+    const { bandName } = eachBand;
+    // destructuring a 'mostPlayedSongOnSpotify' object from 'eachBand' parent object, 
+    // grabbing 'name' and 'plays' key and their values
+    // and declaring variables with the same key names ('bandName)
+    // variable values are assigned respective the key values
+    const { name, plays } = eachBand.mostPlayedSongOnSpotify;
+
+    if (formattedNum(plays) > mostPlayed) {
+      mostPlayed = formattedNum(plays);
+      stringResult = `${bandName}, '${name}', ${plays} plays`;
     }
   }
   return stringResult;
@@ -316,8 +328,8 @@ function countByCountry(bands) {
       countryCount[country] = 1;
       // else if it's not undefined, meaning it's 1 or more
     } else {
-      // add 1 for every iteration of that country
-      countryCount[country] = countryCount[country] + 1;
+      // for every iteration of that country, increment the value
+      countryCount[country] ++;
     }
   }
   // return the populated object
